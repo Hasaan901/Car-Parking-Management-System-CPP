@@ -1,50 +1,113 @@
-# Car Parking Management System
+# 🚗 Car Parking Management System
 
-## Introduction
+A robust, console-based **Car Parking Management System** developed in C++. This project demonstrates the practical implementation of core Data Structures and Algorithms (DSA) to solve real-world resource allocation problems.
 
-The Car Parking Management System is a C++-based console application designed to simulate the operations of a small parking lot using object-oriented programming principles. This project was developed as part of an academic assignment to demonstrate the practical application of key data structures such as stacks, queues, and linked lists.
+## 📌 Project Overview
 
-## Objective
+This system simulates a multi-floor parking facility. It efficiently manages car inflow and outflow using a combination of linear and non-linear data structures. The system handles congestion by utilizing an entry queue and an overflow waitlist, ensuring a seamless user experience.
 
-The primary objective of this project is to manage the inflow and outflow of cars in a parking facility with limited space, efficiently handling scenarios like entry queue overflow and full parking floors. The system aims to allocate parking slots dynamically and ensure no data is lost, even during congestion.
+### 🛠 Key Features
 
-## Features
+- **Multi-Floor Support**: Manages parking across multiple levels using a Stack-based LIFO approach.
+- **Entry Queue Management**: Uses a **Circular Queue** to handle incoming cars before they are assigned a slot.
+- **Congestion Handling**: Implements a **Linked List-based Waitlist** for overflow when the parking lot and entry queue are both full.
+- **Real-time Tracking**: Dynamically tracks car positions and floor assignments.
+- **Interactive CLI**: A user-friendly menu-driven interface for all operations.
 
-- Entry Queue: A circular queue holds cars waiting to be parked.
-- Parking Floors: Two parking floors represented by stack structures simulate LIFO parking behavior.
-- Overflow Waitlist: When both floors and the entry queue are full, a singly linked list stores car numbers that are waiting for a slot.
-- Dynamic Parking Records: The ParkingDetails class dynamically maintains a list of each car's parked floor and position.
-- User Menu: Interactive console menu allows users to enqueue cars, park them, remove parked cars, and display the current status.
+---
 
-## Technical Details
+## 🏗 System Architecture & Data Structures
 
-- Language: C++
-- Data Structures:
-  - Stack: Used for each parking floor.
-  - Circular Queue: Manages car entry queue.
-  - Singly Linked List: Handles the overflow waitlist.
-  - Dynamic Array: Stores real-time parking data.
-- Functions:
-  - enqueue(), dequeue() for managing the entry queue.
-  - push(), pop() for parking and removing cars from floors.
-  - addToWaitlist(), removeFromWaitlist() for overflow handling.
+The project leverages specific data structures to mimic real-world parking logic:
 
-## Compilation and Execution
+| Component | Data Structure | Why? |
+| :--- | :--- | :--- |
+| **Parking Floor** | `Stack` | Simulates LIFO (Last-In-First-Out) parking where the last car in is the first one out. |
+| **Entry Queue** | `Circular Queue` | Efficiently manages a fixed-size buffer for incoming vehicles. |
+| **Overflow Waitlist** | `Singly Linked List` | Provides dynamic scaling for an unlimited number of waiting cars during peak hours. |
+| **Parking Records** | `Dynamic Array` | Stores real-time coordinate data (Floor, Position) for each vehicle. |
 
-To compile and run the project:
+### 📊 Logic Flow
 
-```bash
-g++ car_parking.cpp -o car_parking
-./car_parking
+```mermaid
+graph TD
+    A[Car Arrives] --> B{Entry Queue Full?}
+    B -- No --> C[Add to Circular Queue]
+    B -- Yes --> D[Add to Overflow Waitlist]
+    C --> E[Check Parking Floors]
+    E --> F{Floor 1 Space?}
+    F -- Yes --> G[Park on Floor 1]
+    F -- No --> H{Floor 2 Space?}
+    H -- Yes --> I[Park on Floor 2]
+    H -- No --> D
 ```
 
-## Developer
+---
 
-- Name: Hasaan Ahmed
-- ID: F2023376068
-- Course: Object-Oriented Programming (OOP)
-- Instructor: [Instructor Name]
-- Semester: Spring 2025
+## 🚀 Getting Started
 
-This project was developed for educational purposes and can be extended for more complex parking scenarios involving time tracking, billing systems, and graphical interfaces.
-TEST CHANGE
+### Prerequisites
+
+- A C++ compiler (GCC/G++, Clang, or MSVC).
+
+### Compilation & Execution
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/dsa-car-parking.git
+   cd dsa-car-parking
+   ```
+
+2. **Compile the source code**:
+   ```bash
+   g++ main.cpp -o parking_system
+   ```
+
+3. **Run the application**:
+   ```bash
+   ./parking_system
+   ```
+
+---
+
+## 💻 Sample Interaction
+
+```text
+Parking Lot Menu:
+1. Enter car (Add to entry queue or overflow waitlist)
+2. Park car from queue
+3. Remove car from floor
+4. Display parking lot, queues, and waitlist
+5. Exit
+
+Enter your choice: 1
+Enter car number to add: 101
+Car 101 added to the entry queue.
+
+Enter your choice: 2
+Car 101 parked on Floor 1, Position 1.
+```
+
+---
+
+## 👨‍💻 Developer Information
+
+- **Name**: Hasaan Ahmed
+- **Target Course**: Data Structures & Algorithms
+- **Institution**: University Project
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+> [!NOTE]  
+> This project was developed as a university assignment to demonstrate proficiency in C++ and fundamental data structures.
+
+---
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![C++](https://img.shields.io/badge/Language-C++-blue.svg)](https://isocpp.org/)
