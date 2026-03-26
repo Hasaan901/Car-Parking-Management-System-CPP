@@ -54,7 +54,7 @@ graph TD
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/dsa-car-parking.git
+   git clone https://github.com/Hasaan901/dsa-car-parking.git
    cd dsa-car-parking
    ```
 
